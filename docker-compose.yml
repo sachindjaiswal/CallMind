@@ -1,0 +1,151 @@
+name: callmind
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: callmind-mongo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27018:27017"
+    volumes:
+      - callmind-mongo-data:/data/db
+    networks:
+      - callmind
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: callmind-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:6380:6379"
+    volumes:
+      - callmind-redis-data:/data
+    networks:
+      - callmind
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: api
+    container_name: callmind-api
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: development
+      PORT: "8080"
+      MONGODB_URI: mongodb://mongo:27017/callmind
+      REDIS_URL: redis://redis:6379
+      CORS_ORIGIN: http://localhost:5174,http://localhost:5173
+      LOG_LEVEL: info
+      STORAGE_DIR: /app/storage
+      MAX_UPLOAD_BYTES: "26214400"
+      MAX_FILES_PER_UPLOAD: "20"
+      WORKSPACE_ID: default
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
+      GEMINI_MODEL: "${GEMINI_MODEL:-gemini-3.8-flash}"
+      GEMINI_FALLBACK_MODEL: "${GEMINI_FALLBACK_MODEL:-gemini-3.1-flash-lite}"
+      GROQ_API_KEY: "${GROQ_API_KEY:-}"
+      GROQ_STT_MODEL: "${GROQ_STT_MODEL:-whisper-large-v3-turbo}"
+      GROQ_STT_MAX_BYTES: "${GROQ_STT_MAX_BYTES:-26214400}"
+    ports:
+      - "8080:8080"
+    volumes:
+      - callmind-storage:/app/storage
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - callmind
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8080/api/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: worker
+    container_name: callmind-worker
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: development
+      REDIS_URL: redis://redis:6379
+      MONGODB_URI: mongodb://mongo:27017/callmind
+      STORAGE_DIR: /app/storage
+      FFPROBE_PATH: ffprobe
+      FFMPEG_PATH: ffmpeg
+      LOG_LEVEL: info
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
+      GEMINI_MODEL: "${GEMINI_MODEL:-gemini-3.8-flash}"
+      GEMINI_FALLBACK_MODEL: "${GEMINI_FALLBACK_MODEL:-gemini-3.1-flash-lite}"
+      GROQ_API_KEY: "${GROQ_API_KEY:-}"
+      GROQ_STT_MODEL: "${GROQ_STT_MODEL:-whisper-large-v3-turbo}"
+      GROQ_STT_MAX_BYTES: "${GROQ_STT_MAX_BYTES:-26214400}"
+      GEMINI_STT_MODEL: "${GEMINI_STT_MODEL:-gemini-3.5-transcribe}"
+      GEMINI_STT_MAX_BYTES: "${GEMINI_STT_MAX_BYTES:-26214400}"
+      STT_STRATEGY: "${STT_STRATEGY:-language-aware}"
+    volumes:
+      - callmind-storage:/app/storage
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - callmind
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: web
+    container_name: callmind-web
+    restart: unless-stopped
+    init: true
+    environment:
+      VITE_API_PROXY_TARGET: http://api:8080
+    ports:
+      - "5174:5173"
+    depends_on:
+      api:
+        condition: service_started
+    networks:
+      - callmind
+
+networks:
+  callmind:
+    name: callmind-network
+    driver: bridge
+
+volumes:
+  callmind-mongo-data:
+    name: callmind-mongo-data
+  callmind-redis-data:
+    name: callmind-redis-data
+  callmind-storage:
+    name: callmind-storage

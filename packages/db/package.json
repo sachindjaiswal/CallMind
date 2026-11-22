@@ -1,0 +1,23 @@
+{
+  "name": "@callmind/db",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MongoDB models shared by the CallMind API and worker",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@callmind/shared": "0.1.0",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "vitest": "^5.1.1"
+  }
+}

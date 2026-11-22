@@ -1,0 +1,33 @@
+{
+  "name": "callmind-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "description": "General-purpose AI-powered conversation intelligence",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npm run build -w @callmind/shared && concurrently -n api,worker,web -c blue,magenta,green \"npm:dev:api\" \"npm:dev:worker\" \"npm:dev:web\"",
+    "dev:api": "npm run dev -w @callmind/api",
+    "dev:worker": "npm run dev -w @callmind/worker",
+    "dev:web": "npm run dev -w @callmind/web",
+    "build": "npm run build -w @callmind/shared && npm run build -w @callmind/db && npm run build -w @callmind/api && npm run build -w @callmind/worker && npm run build -w @callmind/web",
+    "typecheck": "npm run build -w @callmind/shared && npm run build -w @callmind/db && npm run typecheck -w @callmind/db && npm run typecheck -w @callmind/api && npm run typecheck -w @callmind/worker && npm run typecheck -w @callmind/web",
+    "test": "npm run build -w @callmind/shared && npm run build -w @callmind/db && npm run test -w @callmind/shared && npm run test -w @callmind/db && npm run test -w @callmind/api && npm run test -w @callmind/worker && npm run test -w @callmind/web",
+    "up": "docker compose up -d --build",
+    "down": "docker compose down",
+    "restart": "docker compose restart",
+    "ps": "docker compose ps",
+    "logs": "docker compose logs -f",
+    "infra:up": "docker compose up -d mongo redis",
+    "test:job": "docker compose exec worker npm run enqueue:test -w @callmind/worker"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3"
+  }
+}

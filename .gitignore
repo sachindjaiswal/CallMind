@@ -1,0 +1,61 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# builds
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# environment
+.env
+.env.*
+!.env.example
+
+# logs and caches
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+.vite/
+.tmp/
+tmp/
+temp/
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# uploads / local storage
+storage/
+uploads/
+
+# private test recordings
+test_data/
+*.mp3
+*.mp4
+*.m4a
+*.wav
+*.ogg
+*.flac
+*.webm
+
+# local data and credentials
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.rdb
+*.aof
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
