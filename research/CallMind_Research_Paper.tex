@@ -1,47 +1,47 @@
-\documentclass[conference,a4paper]{IEEEtran}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{booktabs}
+\documentclass[10pt,a4paper]{article}
+\usepackage{callmind-journal}
 \usepackage{multirow}
-\usepackage{array}
-\usepackage{url}
-\usepackage{cite}
-\usepackage{xcolor}
-\usepackage[hidelinks]{hyperref}
 
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\etal}{\textit{et al.}}
 
-\begin{document}
 \hypersetup{
   pdftitle={Evidence-Linked Multi-Recording Conversation Intelligence for Structured Daily Reporting},
   pdfsubject={Mini Project--II research paper},
   pdfkeywords={conversation intelligence, evidence grounding, meeting summarization, provenance}
 }
 
+\begin{document}
 
-\title{Evidence-Linked Multi-Recording Conversation Intelligence for Structured Daily Reporting}
+\ResearchPaperLabel
+\vspace{28pt}
 
-\author{
-\IEEEauthorblockN{[Student Name]}
-\IEEEauthorblockA{[Department]\\
-Government of Maharashtra's Ismail Yusuf College of Arts, Science and Commerce\\
+\JournalTitle{Evidence-Linked Multi-Recording Conversation Intelligence for Structured Daily Reporting}
+\vspace{3pt}
+
+\begingroup\centering
+\JournalAuthor{[Sachin.D.Jaiswal]}\vspace{2pt}
+\JournalAffiliation{[Department]\\
+Government of Maharashtra's Ismail Yusuf College of Arts,\\ Science and Commerce\\
 Jogeshwari (East), Mumbai 400 060, India\\
-Affiliated to the University of Mumbai\\
-\mbox{[Student Email]}}
-\and
-\IEEEauthorblockN{[Guide Name]}
-\IEEEauthorblockA{[Guide Designation], [Department]\\
-Government of Maharashtra's Ismail Yusuf College of Arts, Science and Commerce\\
-Jogeshwari (East), Mumbai 400 060, India\\
-\mbox{[Guide Email]}}
-}
+Affiliated to the University of Mumbai}\vspace{5pt}
+\JournalAuthor{[Guide Name]}\vspace{2pt}
+\JournalAffiliation{[Guide Designation], [Department]\\
+Government of Maharashtra's Ismail Yusuf College of Arts,\\ Science and Commerce\\
+Jogeshwari (East), Mumbai 400 060, India}
+\par\endgroup
 
-\maketitle
+\JournalSeparator
 
-\begin{abstract}
+\begingroup\centering
+\JournalEmail{[Student Email]}\vspace{1pt}
+\JournalEmail{[Guide Email]}
+\par\endgroup
+
+\vspace{8pt}
+
+\section*{Abstract}
+
 Organizations increasingly record calls and meetings, but the resulting audio rarely
 becomes an accountable operational record. Transcription alone preserves words without
 extracting tasks, decisions, commitments, dates, or risks, and large language model (LLM)
@@ -63,12 +63,8 @@ deliberately descriptive: the corpus is small, no reference transcripts or human
 annotations exist, and no word error rate, precision, recall, or F1 is claimed. The
 contribution is a reproducible architecture and an honest account of what such a system
 can and cannot yet demonstrate.
-\end{abstract}
 
-\begin{IEEEkeywords}
-conversation intelligence, evidence grounding, meeting summarization, action-item
-extraction, provenance, daily reporting, large language models, speech-to-text.
-\end{IEEEkeywords}
+\noindent\textbf{Keywords:} conversation intelligence, evidence grounding, meeting summarization, action-item extraction, provenance, daily reporting, large language models, speech-to-text.
 
 \section{Introduction}
 
@@ -265,29 +261,37 @@ combining per-recording evidence-linked extraction with cautious cross-recording
 daily-report consolidation and provenance-preserving review. This is a scoped finding, not
 a claim that no such system exists.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Positioning against the reviewed literature.}
 \label{tab:related}
-\setlength{\tabcolsep}{5pt}
-\footnotesize
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.9cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{2.4cm}>{\raggedright\arraybackslash}p{2.2cm}@{}}
-\toprule
-Ref. & Focus & Data / scale & Evidence or attribution & Multi-recording & Structured output \\
-\midrule
+\journaltablestyle
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{0.8cm}|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{2.8cm}|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}p{2.0cm}|}
+\hline
+\journalheadrow
+\journalth{Ref.} & \journalth{Focus} & \journalth{Data / scale} & \journalth{Evidence or attribution} & \journalth{Multi-recording} & \journalth{Structured output} \\
+\hline
 \cite{rennard2023abstractive} & Abstractive meeting summarization (survey) & Multiple meeting corpora & Discussed as evaluation issue & No & Prose summary \\
+\hline
 \cite{zhong2021qmsum} & Query-based meeting summarization & 1,808 pairs / 232 meetings & Query-conditioned summaries & No & Prose summary \\
+\hline
 \cite{golia2023action} & Action-item-driven summarization & AMI & BERTScore 64.98 & No & Summary \\
+\hline
 \cite{cohen2021rephrasing} & Rephrasing transcript action items & Transcript/email pairs & Context-conditioned generation & No & Rephrased item \\
+\hline
 \cite{liu2023action} & Action-item detection & Meeting transcripts & Local + global context & No & Item labels \\
+\hline
 \cite{jang2023conversation} & Multi-session dialogue & 1M instances & Temporal/relational context & Sessions, not reports & Dialogue \\
+\hline
 \cite{maharana2024locomo} & Very long-term memory & $\sim$600 turns, up to 32 sessions & Long-context / RAG analysis & Sessions, not reports & QA \\
+\hline
 \cite{golany2024mised} & Source-grounded dialogs & Meeting transcripts & Human-verified attribution & No & Dialog with sources \\
+\hline
 \textbf{Ours} & Evidence-linked reporting & 8 recordings (audit) & Segment, quote, timing & Yes & Typed insights/report \\
-\bottomrule
+\hline
 \end{tabular}
-\end{table*}
+\end{table}
 
 \section{System Design and Methodology}
 
@@ -301,7 +305,7 @@ request selects eligible recordings, consolidates insights deterministically, re
 evidence, and persists a versioned report. The web client reads reports and opens an
 evidence drawer that navigates to the exact recording and segment.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.94\textwidth]{figures/architecture.pdf}
 \caption{System architecture. Arrows show the recording pipeline from ingestion through
@@ -309,7 +313,7 @@ transcription, extraction, and deterministic consolidation to persistence and re
 presentation. Every persisted insight carries an evidence tuple that is validated
 against the stored transcript before it can reach a report.}
 \label{fig:arch}
-\end{figure*}
+\end{figure}
 
 \subsection{Ingestion and Validation}
 
@@ -355,7 +359,7 @@ not prove that the quote entails the claim, a limitation we return to in
 Section~\ref{sec:threats}. Figure~\ref{fig:prov} summarizes the resulting chain from
 transcript segment to persisted analysis and consolidated report.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.90\textwidth]{figures/provenance.pdf}
 \caption{Evidence-provenance chain. A candidate insight is persisted only if the validation
@@ -363,7 +367,7 @@ gate resolves its recording and segment, checks identifier/index agreement, quot
 containment, and timing within $\pm0.25$\,s. Consolidated insights retain source lineage
 and are re-validated against the source transcripts.}
 \label{fig:prov}
-\end{figure*}
+\end{figure}
 
 \subsection{Deterministic Consolidation}
 
@@ -396,26 +400,33 @@ deep link carries the recording, segment identifier, segment index, and start ti
 recordings view. The interface therefore treats a report as a set of claims with sources,
 not as a generated paragraph.
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Implementation mapping from requirements to mechanisms and primary modules.}
 \label{tab:impl}
-\footnotesize
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.7cm}>{\raggedright\arraybackslash}p{5.4cm}>{\raggedright\arraybackslash}p{8.6cm}@{}}
-\toprule
-Req. & Mechanism & Primary modules \\
-\midrule
+\journaltablestyle
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{0.7cm}|>{\raggedright\arraybackslash}p{5.2cm}|>{\raggedright\arraybackslash}p{8.3cm}|}
+\hline
+\journalheadrow
+\journalth{Req.} & \journalth{Mechanism} & \journalth{Primary modules} \\
+\hline
 R1 & Per-file outcome in a multi-file upload & \code{apps/api/src/routes/recordings.ts}; shared upload schemas \\
+\hline
 R2 & Extension, size, signature, MIME, and ASF/WMA checks & \code{audioValidation.ts}; recording constants \\
+\hline
 R3 & Language routing; diarization; word timestamps; FFmpeg transcode & \code{stt.ts}; \code{groqTranscription.ts}; \code{geminiTranscription.ts} \\
+\hline
 R4 & JSON response schema; 11 categories; primary/fallback; retries & \code{analysis.ts}; \code{geminiAnalysis.ts}; worker env config \\
+\hline
 R5 & Segment resolution; quote containment; $\pm0.25$\,s timing; rejection & \code{conversationAnalysis.ts}; \code{recordingAnalyze.ts} \\
+\hline
 R6 & Category/key grouping; lineage; relationships; conflicts; re-validation & \code{reportConsolidation.ts}; \code{dailyReports.ts} constants \\
+\hline
 R7 & Report-driven cards; evidence drawer; deep links; polling & \code{dashboard.tsx}; \code{evidence-drawer.tsx}; \code{recording-deep-link.ts} \\
-\bottomrule
+\hline
 \end{tabular}
-\end{table*}
+\end{table}
 
 \section{Implementation}
 
@@ -470,7 +481,7 @@ filenames, phone numbers, names, or transcript text were extracted for publicati
 
 Three kinds of measurement are reported. \emph{Functional verification} is binary:
 typecheck, build, and test outcomes. \emph{Provenance validity} is the fraction of stored
-items whose evidence satisfies the contract in Section~II-B; this is an internal
+items whose evidence satisfies the contract in Section~2.2; this is an internal
 consistency measure, not a semantic-correctness measure. \emph{Descriptive coverage}
 counts recordings, analyses, insights, categories, reports, relationships, and conflicts.
 We do not compute word error rate, character error rate, precision, recall, F1, or
@@ -504,21 +515,25 @@ were not modified. The \code{api} and \code{worker} test commands therefore exit
 \centering
 \caption{Offline test results by workspace (25 November 2026).}
 \label{tab:tests}
-\small
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{@{}lrrrr@{}}
-\toprule
-Workspace & Files & Tests & Pass & Fail \\
-\midrule
+\journaltablestyle
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|r|r|r|r|}
+\hline
+\journalheadrow
+\journalth{Workspace} & \journalth{Files} & \journalth{Tests} & \journalth{Pass} & \journalth{Fail} \\
+\hline
 \code{shared} & 5 & 21 & 21 & 0 \\
+\hline
 \code{db} & 1 & 5 & 5 & 0 \\
+\hline
 \code{api} & 4 & 32 & 29 & 3 \\
+\hline
 \code{worker} & 11 & 46 & 44 & 2 \\
+\hline
 \code{web} & 9 & 71 & 71 & 0 \\
-\midrule
-Total & 30 & 175 & 170 & 5 \\
-\bottomrule
-\end{tabular}
+\hline
+\textbf{Total} & \textbf{30} & \textbf{175} & \textbf{170} & \textbf{5} \\
+\hline
+\end{tabular*}
 \end{table}
 
 \subsection{Persisted Corpus}
@@ -541,21 +556,25 @@ extraction quality.
 \centering
 \caption{Evidence-traceability audit on the persisted corpus.}
 \label{tab:evidence}
-\small
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{@{}lrr@{}}
-\toprule
-Check & Passed & Total \\
-\midrule
+\journaltablestyle
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|r|r|}
+\hline
+\journalheadrow
+\journalth{Check} & \journalth{Passed} & \journalth{Total} \\
+\hline
 Per-recording insights checked & -- & 6 \\
+\hline
 Segment resolved & 6 & 6 \\
+\hline
 Quote contained in segment & 6 & 6 \\
+\hline
 Timing within $\pm0.25$\,s & 6 & 6 \\
+\hline
 All checks passed & 6 & 6 \\
-\midrule
+\hline
 Consolidated evidence re-validated & 9 & 9 \\
-\bottomrule
-\end{tabular}
+\hline
+\end{tabular*}
 \end{table}
 
 \subsection{Evidence Traceability}
@@ -592,24 +611,33 @@ claim to detect all forms of contradiction.
 \centering
 \caption{Persisted-corpus summary (read-only audit).}
 \label{tab:corpus}
-\small
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{@{}lrr@{}}
-\toprule
-Quantity & Observed & Notes \\
-\midrule
+\journaltablestyle
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|l|r|l|}
+\hline
+\journalheadrow
+\journalth{Quantity} & \journalth{Observed} & \journalth{Notes} \\
+\hline
 Recordings & 8 & 6 analyzed \\
+\hline
 Transcripts & 7 & 6 Groq, 1 Gemini \\
+\hline
 Completed analyses & 6 & all fallback model \\
+\hline
 Extracted insights & 6 & 0--2 per analysis \\
+\hline
 Completed reports & 5 & 2 UTC, 3 IST \\
+\hline
 Source links & 7 & across reports \\
+\hline
 Consolidated insights & 9 & all generic \\
+\hline
 Validated consolidated evidence & 9/9 & re-checked \\
+\hline
 Relationships & 0 & none proposed \\
+\hline
 Conflicts & 0 & none detected \\
-\bottomrule
-\end{tabular}
+\hline
+\end{tabular*}
 \end{table}
 
 \subsection{Capability Comparison}
@@ -627,23 +655,30 @@ review time or summary quality.
 \caption{Qualitative capability comparison. This is a design comparison, not a measured
 benchmark.}
 \label{tab:baseline}
-\footnotesize
+\journaltablestyle
 \setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.12}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{1.65cm}>{\raggedright\arraybackslash}p{1.65cm}>{\raggedright\arraybackslash}p{2.1cm}@{}}
-\toprule
-Capability & Transcript only & Per-recording & Proposed \\
-\midrule
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|}
+\hline
+\journalheadrow
+\journalth{Capability} & \journalth{Transcript only} & \journalth{Per-recording} & \journalth{Proposed} \\
+\hline
 Typed output & No & No & Yes, 11 types \\
+\hline
 Per-item evidence & Raw text search & Usually none & Segment, quote, time \\
+\hline
 Cross-recording merge & Manual & Manual & Deterministic groups \\
+\hline
 Source lineage & Manual & Weak & IDs + evidence \\
+\hline
 Conflict handling & Manual & Usually absent & Reviewable \\
+\hline
 Report versioning & Ad hoc & Ad hoc & Append-only \\
+\hline
 Review interface & Text search & Summary list & Cards + evidence \\
+\hline
 Measured accuracy & Not measured & Not measured & Not measured \\
-\bottomrule
-\end{tabular}
+\hline
+\end{tabular*}
 \end{table}
 
 \subsection{Discussion}

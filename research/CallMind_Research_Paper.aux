@@ -1,20 +1,17 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
-\providecommand\HyField@AuxAddToFields[1]{}
-\providecommand\HyField@AuxAddToCoFields[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Problem Formulation and Objectives}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Inputs and Notation}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Evidence Validity}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Daily Report}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Research Objectives}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}System Requirements and Research Questions}{3}{subsection.2.5}\protected@file@percent }
 \citation{rennard2023abstractive}
 \citation{zhong2021qmsum}
 \citation{golia2023action}
-\@writefile{toc}{\contentsline {section}{\numberline {II}Problem Formulation and Objectives}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Inputs and Notation}{2}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Evidence Validity}{2}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Daily Report}{2}{subsection.2.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Research Objectives}{2}{subsection.2.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-E}}System Requirements and Research Questions}{2}{subsection.2.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {III}Related Work}{2}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Review Methodology}{2}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Meeting Summarization}{2}{subsection.3.2}\protected@file@percent }
 \citation{cohen2021rephrasing}
 \citation{liu2023action}
 \citation{jang2023conversation}
@@ -29,47 +26,54 @@
 \citation{jang2023conversation}
 \citation{maharana2024locomo}
 \citation{golany2024mised}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Action Items and Structured Extraction}{3}{subsection.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Multi-Session and Long-Term Conversation}{3}{subsection.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Grounded Attribution and Speech Recognition}{3}{subsection.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-F}}Positioning}{3}{subsection.3.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {IV}System Design and Methodology}{3}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Architecture and Data Flow}{3}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Ingestion and Validation}{3}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Provider-Routed Transcription}{3}{subsection.4.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Evidence-Linked Extraction}{3}{subsection.4.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Positioning against the reviewed literature.}}{4}{table.1}\protected@file@percent }
-\newlabel{tab:related}{{I}{4}{Positioning against the reviewed literature}{table.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Deterministic Consolidation}{4}{subsection.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}Report API, Versioning, and Dashboard}{4}{subsection.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {V}Implementation}{4}{section.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System architecture. Arrows show the recording pipeline from ingestion through transcription, extraction, and deterministic consolidation to persistence and report presentation. Every persisted insight carries an evidence tuple that is validated against the stored transcript before it can reach a report.}}{5}{figure.1}\protected@file@percent }
-\newlabel{fig:arch}{{1}{5}{System architecture. Arrows show the recording pipeline from ingestion through transcription, extraction, and deterministic consolidation to persistence and report presentation. Every persisted insight carries an evidence tuple that is validated against the stored transcript before it can reach a report}{figure.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-provenance chain. A candidate insight is persisted only if the validation gate resolves its recording and segment, checks identifier/index agreement, quote containment, and timing within $\pm 0.25$\,s. Consolidated insights retain source lineage and are re-validated against the source transcripts.}}{5}{figure.2}\protected@file@percent }
-\newlabel{fig:prov}{{2}{5}{Evidence-provenance chain. A candidate insight is persisted only if the validation gate resolves its recording and segment, checks identifier/index agreement, quote containment, and timing within $\pm 0.25$\,s. Consolidated insights retain source lineage and are re-validated against the source transcripts}{figure.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Experimental Setup and Evaluation Methodology}{5}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-A}}Frozen Boundary and Environment}{5}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-B}}Evaluation Corpus}{5}{subsection.6.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Implementation mapping from requirements to mechanisms and primary modules.}}{6}{table.2}\protected@file@percent }
-\newlabel{tab:impl}{{II}{6}{Implementation mapping from requirements to mechanisms and primary modules}{table.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-C}}Verification Procedure}{6}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-D}}Metrics}{6}{subsection.6.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VI-E}}Baselines}{6}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Results and Discussion}{6}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}Static and Test Results}{6}{subsection.7.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Offline test results by workspace (25 November 2026).}}{6}{table.3}\protected@file@percent }
-\newlabel{tab:tests}{{III}{6}{Offline test results by workspace (25 November 2026)}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Persisted Corpus}{6}{subsection.7.2}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Evidence-traceability audit on the persisted corpus.}}{7}{table.4}\protected@file@percent }
-\newlabel{tab:evidence}{{IV}{7}{Evidence-traceability audit on the persisted corpus}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-C}}Evidence Traceability}{7}{subsection.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-D}}Daily Reports and Consolidation}{7}{subsection.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-E}}Capability Comparison}{7}{subsection.7.5}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Persisted-corpus summary (read-only audit).}}{7}{table.5}\protected@file@percent }
-\newlabel{tab:corpus}{{V}{7}{Persisted-corpus summary (read-only audit)}{table.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Qualitative capability comparison. This is a design comparison, not a measured benchmark.}}{7}{table.6}\protected@file@percent }
-\newlabel{tab:baseline}{{VI}{7}{Qualitative capability comparison. This is a design comparison, not a measured benchmark}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-F}}Discussion}{7}{subsection.7.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{4}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Review Methodology}{4}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Meeting Summarization}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Action Items and Structured Extraction}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Multi-Session and Long-Term Conversation}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Grounded Attribution and Speech Recognition}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning against the reviewed literature.}}{5}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:related}{{1}{5}{Positioning against the reviewed literature}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Positioning}{5}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}System Design and Methodology}{5}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Architecture and Data Flow}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Ingestion and Validation}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System architecture. Arrows show the recording pipeline from ingestion through transcription, extraction, and deterministic consolidation to persistence and report presentation. Every persisted insight carries an evidence tuple that is validated against the stored transcript before it can reach a report.}}{6}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:arch}{{1}{6}{System architecture. Arrows show the recording pipeline from ingestion through transcription, extraction, and deterministic consolidation to persistence and report presentation. Every persisted insight carries an evidence tuple that is validated against the stored transcript before it can reach a report}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Provider-Routed Transcription}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evidence-Linked Extraction}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Evidence-provenance chain. A candidate insight is persisted only if the validation gate resolves its recording and segment, checks identifier/index agreement, quote containment, and timing within $\pm 0.25$\,s. Consolidated insights retain source lineage and are re-validated against the source transcripts.}}{7}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:prov}{{2}{7}{Evidence-provenance chain. A candidate insight is persisted only if the validation gate resolves its recording and segment, checks identifier/index agreement, quote containment, and timing within $\pm 0.25$\,s. Consolidated insights retain source lineage and are re-validated against the source transcripts}{figure.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Implementation mapping from requirements to mechanisms and primary modules.}}{7}{table.caption.4}\protected@file@percent }
+\newlabel{tab:impl}{{2}{7}{Implementation mapping from requirements to mechanisms and primary modules}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Deterministic Consolidation}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Report API, Versioning, and Dashboard}{7}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Implementation}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experimental Setup and Evaluation Methodology}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Frozen Boundary and Environment}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Evaluation Corpus}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Verification Procedure}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Metrics}{8}{subsection.6.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Offline test results by workspace (25 November 2026).}}{9}{table.caption.5}\protected@file@percent }
+\newlabel{tab:tests}{{3}{9}{Offline test results by workspace (25 November 2026)}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Evidence-traceability audit on the persisted corpus.}}{9}{table.caption.6}\protected@file@percent }
+\newlabel{tab:evidence}{{4}{9}{Evidence-traceability audit on the persisted corpus}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Baselines}{9}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Results and Discussion}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Static and Test Results}{9}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Persisted Corpus}{9}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Persisted-corpus summary (read-only audit).}}{10}{table.caption.7}\protected@file@percent }
+\newlabel{tab:corpus}{{5}{10}{Persisted-corpus summary (read-only audit)}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Evidence Traceability}{10}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Daily Reports and Consolidation}{10}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Capability Comparison}{10}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Discussion}{10}{subsection.7.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Qualitative capability comparison. This is a design comparison, not a measured benchmark.}}{11}{table.caption.8}\protected@file@percent }
+\newlabel{tab:baseline}{{6}{11}{Qualitative capability comparison. This is a design comparison, not a measured benchmark}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Threats to Validity and Limitations}{11}{section.8}\protected@file@percent }
+\newlabel{sec:threats}{{8}{11}{Threats to Validity and Limitations}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion and Future Scope}{11}{section.9}\protected@file@percent }
 \bibstyle{IEEEtran}
 \bibdata{references}
 \bibcite{rennard2023abstractive}{1}
@@ -81,8 +85,4 @@
 \bibcite{maharana2024locomo}{7}
 \bibcite{golany2024mised}{8}
 \bibcite{radford2023whisper}{9}
-\@writefile{toc}{\contentsline {section}{\numberline {VIII}Threats to Validity and Limitations}{8}{section.8}\protected@file@percent }
-\newlabel{sec:threats}{{VIII}{8}{Threats to Validity and Limitations}{section.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {IX}Conclusion and Future Scope}{8}{section.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{8}{section*.2}\protected@file@percent }
-\gdef \@abspage@last{8}
+\gdef \@abspage@last{12}

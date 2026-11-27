@@ -1,0 +1,17 @@
+# SDD ledger — plan: docs/superpowers/plans/2026-11-27-callmind-journal-format.md
+
+Ruling: work directly in the existing workspace — research/ is untracked and no commits are permitted, so a git worktree would omit the source and violate the task constraints — cost if wrong: no isolated branch, but the backup file preserves the original.
+Pre-flight: Task 1 produces `callmind-journal.sty` macros consumed by Tasks 2–4; Task 2 produces the document shell consumed by Task 3; Task 3 produces the rebuilt PDF consumed by Task 4. No conflicting interface names found.
+Task 1: complete (backup + Carlito fonts + `callmind-journal.sty`; smoke test RED `callmind-journal.sty not found` -> GREEN exit 0, 1 page; removed smoke artifacts)
+Task 2: complete (article shell, masthead, abstract/keywords, orange header, boxed footer; smoke compile RED on missing style -> GREEN after style; full source converted and compiled)
+Task 3: complete (all six tables restyled with grey header/grid, figures preserved, caption setup, bibliography hanging indent; full compile exit 0, 12 A4 pages, 0 overfull boxes; pdfinfo/pdffonts/URL checks pass)
+Task 4: in progress (visual QA and documentation; Formatting_Report.md written; final fresh-context review requested)
+Ruling: bibliography labels kept inside the left margin — changed hanging-indent patch from negative itemindent to leftmargin=1.6em/labelwidth=1.2em/labelsep=0.4em because the sample does not place reference numbers outside the text block — cost if wrong: slightly narrower hanging indent.
+Ruling: kept Computer Modern math fonts despite size substitution warnings — changing to unicode-math would alter equation rendering and exceed the formatting-only scope — cost if wrong: non-fatal log warnings remain.
+Final review: fresh-context subagent reviewed source/style/PDF/docs; Important finding (stale `Section~II-B`) and spec finding (`hidelinks` prevented light-blue URLs) fixed; docs claim about page 1 corrected. Reviewer could not view images; visual QA was done by the implementing session.
+Task 4: complete (visual QA, README and Formatting_Report updated, editable ODT/DOCX/PDF derivative produced, docs README added; final rebuild exit 0)
+Ruling: produced both ODT and DOCX — user asked for “odt version or docs”; ODT is the primary editable file and DOCX covers Word users — cost if wrong: extra derivative files to maintain.
+Ruling: ODT/DOCX omit the LaTeX running header and boxed footer page-number field — odfpy master-page fields would add complexity to an editable derivative and the LaTeX PDF remains authoritative — cost if wrong: Office preview differs slightly from the PDF header/footer.
+Final: no commits, no app/DB/Docker/Git/provider changes; original IEEE source preserved.
+Final correction: user rejected the first ODT/DOCX styling. Root cause was style-name mismatch (lowercase `add_paragraph` keys vs. descriptive ODF style names) plus missing font-face declarations and missing header/footer; fixed by matching style names, declaring fonts, adding master-page header/footer, and styling table cell paragraphs. Carlito installed into ~/.local/share/fonts/callmind so LibreOffice embeds it. Regression `research/tools/test_odt_styling.py`: PASS; ODT and DOCX both render 13 A4 pages with DejaVu Sans and Carlito embedded.
+Ruling: replaced the earlier decision to omit header/footer in Office versions — user explicitly required the original styling; cost: DOCX/ODX master pages now carry fields that Word may render with minor differences.
